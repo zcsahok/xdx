@@ -114,7 +114,10 @@ main(int argc, char *argv[])
     dircheck();
     loadpreferences();
     loadhistory();
-    readctydata();
+    int rc = readctydata();
+    if (rc != 0) {
+        exit(1);
+    }
 
     maintext = g_object_get_data(G_OBJECT(gui->window), "maintext");
     buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maintext));
